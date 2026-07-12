@@ -7,7 +7,7 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - mynetwork
+      - newnetwork
   auth_service:
     image: kusuma999/lib_app_py:auth_image
     deploy:
@@ -17,7 +17,7 @@ services:
     depends_on:
       - db
     networks:
-      - mynetwork
+      - newnetwork
   book_service:
     image: kusuma999/lib_app_py:book_image
     deploy:
@@ -27,7 +27,7 @@ services:
     depends_on:
       - db
     networks:
-      - mynetwork
+      - newnetwork
   borrow_service:
     image: kusuma999/lib_app_py:borrow_image
     deploy:
@@ -37,7 +37,7 @@ services:
     depends_on:
       - db
     networks:
-      - mynetwork
+      - newnetwork
   frontend:
     image: kusuma999/lib_app_py:frontend_image
     deploy:
@@ -49,8 +49,8 @@ services:
       - book
       - borrow
     networks:
-      - mynetwork
+      - newnetwork
 
 networks:
-  mynetwork:
+  newnetwork:
     driver: overlay
