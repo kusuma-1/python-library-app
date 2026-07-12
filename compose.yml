@@ -8,7 +8,7 @@ services:
       - "3306:3306"
     networks:
       - mynetwork
-  auth:
+  auth_service:
     image: kusuma999/lib_app_py:auth_image
     deploy:
       replicas: 1
@@ -18,7 +18,7 @@ services:
       - db
     networks:
       - mynetwork
-  book:
+  book_service:
     image: kusuma999/lib_app_py:book_image
     deploy:
       replicas: 1
@@ -28,7 +28,7 @@ services:
       - db
     networks:
       - mynetwork
-  borrow:
+  borrow_service:
     image: kusuma999/lib_app_py:borrow_image
     deploy:
       replicas: 1
