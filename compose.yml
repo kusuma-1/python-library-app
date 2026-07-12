@@ -1,0 +1,56 @@
+---
+services:
+  db:
+    image: kusuma999/lib_app_py:database_image
+    deploy:
+      replicas: 1
+    ports:
+      - "3306:3306"
+    networks:
+      - mynetwork
+  auth:
+    image: kusuma999/lib_app_py:auth_image
+    deploy:
+      replicas: 1
+    ports:
+      - "5001:5001"
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+  book:
+    image: kusuma999/lib_app_py:book_image
+    deploy:
+      replicas: 1
+    ports:
+      - "5002:5002"
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+  borrow:
+    image: kusuma999/lib_app_py:borrow_image
+    deploy:
+      replicas: 1
+    ports:
+      - "5003:5003"
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+  frontend:
+    image: kusuma999/lib_app_py:frontend_image
+    deploy:
+      replicas: 1
+    ports:
+      - "5000:5000"
+    depends_on:
+      - auth
+      - book
+      - borrow
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: overlay
